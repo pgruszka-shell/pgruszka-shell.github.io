@@ -2,6 +2,13 @@
     $("#card-container").empty();
     onload();
  }
+
+ function onSelectEnv(){
+    document.getElementById("OriginId").value = document.getElementById("environmentId").value;
+    console.log('calling select env' + document.getElementById("environmentId").value);
+    submit();
+ }
+
  function Onload(){
 
     var local = document.getElementById("countryId").value;

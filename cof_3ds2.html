@@ -44,20 +44,10 @@
           </h2>
         <!-- Credit card componet. Use to get the encrypted card details. -->
         <br>
-        <span class="label">Country:</span>
-        <select class="select btn btn-secondary dropdown-toggle"  id="countryId">
-          <option value="en_GB">UK</option>
-          <option value="nl_NL ">NL</option>
-          <option value="de_DE">DE</option>
-          <option value="de_CH">CH</option>
-          <option value="de_AT">AT</option>
-          <option value="cs_CZ">CZ</option>
-          <option value="sk_SK">SK</option>
-          <option value="pl_PL">PL</option>
-          <option value="bg_BG">BG</option>
-          <option value="fr_LU">LU</option>
-          <option value="nl_BE">BE</option>
-          <option value="en-TR">TR</option>
+        <span class="label">Origin Key:</span>
+        <select class="select btn btn-secondary dropdown-toggle"  id="environmentId" onchange="onSelectEnv()">
+          <option value="pub.v2.8016171198901535.aHR0cHM6Ly9wZ3J1c3prYS1zaGVsbC5naXRodWIuaW8.v9vEkynZST0a3sudLi7KIlb_02xdpfT4-pyDYjRiAzc">SHELL_ALL_ACCOUNTS</option>
+          <option value="pub.v2.8016648877991481.aHR0cHM6Ly9wZ3J1c3prYS1zaGVsbC5naXRodWIuaW8.JnCuu_BLm6l4TIGVco0UBmMuA3NEU2KCJzBT5ZemF3E">SHELL_MPP_PERMITS_PARTNER</option>
         </select> 
         <br>
 
@@ -67,17 +57,10 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Origin Key</span>
                   </div>
-                  <input type="text" id="OriginId" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="pub.v2.8016171198901535.aHR0cDovLzEyNy4wLjAuMTo4ODg3.sF34YVAHsXkZe08ubkfQLqSsUY3b0GjgZrgyyK3epAM">
+                  <input type="text" id="OriginId" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="pub.v2.8016171198901535.aHR0cHM6Ly9wZ3J1c3prYS1zaGVsbC5naXRodWIuaW8.v9vEkynZST0a3sudLi7KIlb_02xdpfT4-pyDYjRiAzc">
                 <button class="input-group-text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" onclick="submit()">submit</button>
                 </div>
               <div>
-            <!-- <h3>Select the environment</h3>
-            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked value="pub.v2.8215499009831073.aHR0cDovLzEyNy4wLjAuMTo4ODg3.bAGR_bR4pIFWdgbWnbOn1RXrU4HRq2z33tJ0zXlqlJc"">
-            <label class="btn btn-secondary" for="option1">Local</label>
-            
-            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value="pub.v2.8016171198901535.aHR0cDovLzEyNy4wLjAuMTo4ODg3.sF34YVAHsXkZe08ubkfQLqSsUY3b0GjgZrgyyK3epAM">
-            <label class="btn btn-secondary" for="option2">Cons</label> -->
-            
         <br>
         <br>
         <div class="row">
