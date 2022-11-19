@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MPP - JS fiddle</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+    </head>
+    <body class="bg-primary" id="page-top" onload="changeMerchant()"">
+      <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+      <nav id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand"><a href="index.html">HOME</a></li>
+              <li class="sidebar-nav-item"><a href="gpayFiddle.html">GPAY</a></li>
+              <li class="sidebar-nav-item"><a href="paypal.html">PayPal</a></li>
+              <li class="sidebar-nav-item"><a href="VisaCheckout.html">Visa</a></li>
+              <li class="sidebar-nav-item"><a href="cof_3ds1.html">Card On file - 3DS1</a></li>
+              <li class="sidebar-nav-item"><a href="cof_3ds2.html">Card On file- - 3DS2</a></li>
+              </ul>
+      </nav>
+        <header class="py-5">
+          <div class="container px-lg-5">
+              <div class="p-4 p-lg-5 bg-transparent rounded-3 text-center">
+                  <div class="m-4 m-lg-5">
+        <h2 class="mb-5">
+          Shell MPP Google Pay Token Generator
+        </h2>
+        <br>
+        <ul class="list-group">
+          <li class="text-start"> Click submit if country or key is changed</li>
+          <li class="text-start">You need to have assigned card payment to your account</li>
+          <li class="text-start">No money will be charged - it's test env</li>
+          <li class="text-start">If button does not work in chrome allow for third party cookies check 
+          <a href="https://stackoverflow.com/questions/24456891/iframe-in-chrome-error-uncaught-securityerror-failed-to-read-the-sessionstora">stackoverflow</a>
+          </li>
+      
+        </ul>
+
+        <br>
+        <span class="label">Country:</span>
+        <select class="select btn btn-secondary dropdown-toggle"  id="merchantId" onchange="changeMerchantID()">
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_UK_TEST">UK</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_NL_TEST">NL</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_DE_TEST">DE</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_CH_TEST">CH</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_AT_TEST">AT</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_CZ_TEST">CZ</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_SK_TEST">SK</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_PL_TEST">PL</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_BG_TEST">BG</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_LU_TEST">LU</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_BE_TEST">BE</option>
+          <option value="ShellInternationalPetroleumCompany_Shell_Smartpay_TR_TEST">TR</option>
+        </select> 
+</div>
+
+
+
+
+        
+        <div class="marchant">
+          <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-sm">Marchant ID</span>
+            </div>
+            <input type="text" id="merchantId1" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="ShellInternationalPetroleumCompany_Shell_Smartpay_UK_TEST">
+          <button class="input-group-text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" onclick="changeMerchant()">submit</button>
+          </div>
+        <div>
+          <div id="container"></div>
+          <span class="label">Pay Token:</span>
+          <button id="copyButton"  style="display:none" id="copyToClipboard" onclick="copyToCliboard()">Copy Token</button>
+          <br/>
+          <textarea rows="10" cols="50" id="token"></textarea>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div>
+
+      </div>
+        </header>   
+        <script async
+  src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="js/gpayfiddle.js"></script>
+<script src="js/scripts.js"></script>
+  </body>
+
+</html>

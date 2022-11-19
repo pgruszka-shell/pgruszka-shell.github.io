@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MPP - JS fiddle</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <!-- Load the client component. -->
+    <script src="https://js.braintreegateway.com/web/3.38.0-beta.2/js/client.min.js"></script>
+    
+    <!-- Load the local payment component. -->
+    <script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+    <script src="https://js.braintreegateway.com/web/3.38.0-beta.2/js/local-payment.min.js"></script>
+    <!-- Load the client component. -->
+    <script src="https://js.braintreegateway.com/web/3.38.0-beta.2/js/client.min.js"></script>
+    <script src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js"></script>
+    
+    <!-- Load the local payment component. -->
+    <script src="https://js.braintreegateway.com/web/3.38.0-beta.2/js/local-payment.min.js"></script>
+        <!-- Load the PayPal component. -->
+        
+        <script src="https://js.braintreegateway.com/web/3.38.0-beta.2/js/paypal-checkout.min.js"></script>
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <script src="js/scripts.js"></script>
+        <script type="text/javascript">
+          function onVisaCheckoutReady (){
+            V.init({ 
+            apikey: "YUG7XHMH9WLIYFILLVD321y1N_po1TwhsRsHerbnbELvawa_4", 
+              paymentRequest: {
+                currencyCode: "GBP",
+                subtotal: "10.00"
+              }
+            });
+            
+            V.on("payment.success", function(payment) 
+              {
+                  alert("Successful");
+                  document.getElementById("output").value = payment.callid;
+          });
+            V.on("payment.cancel", function(payment) 
+              {
+                  alert("Canceled");
+                  alert(JSON.stringify(payment)); 
+          });
+            V.on("payment.error", function(payment,error) 
+              {
+                  alert("error");
+                  alert(JSON.stringify(error));
+          });
+          }
+        </script>
+    </head>
+    <body class="bg-primary" id="page-top">
+      <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+      <nav id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand"><a href="index.html">HOME</a></li>
+              <li class="sidebar-nav-item"><a href="gpayFiddle.html">GPAY</a></li>
+              <li class="sidebar-nav-item"><a href="paypal.html">PayPal</a></li>
+              <li class="sidebar-nav-item"><a href="VisaCheckout.html">Visa</a></li>
+              <li class="sidebar-nav-item"><a href="cof_3ds1.html">Card On file - 3DS1</a></li>
+              <li class="sidebar-nav-item"><a href="cof_3ds2.html">Card On file- - 3DS2</a></li>
+              </ul>
+      </nav>
+        <header class="py-5">
+          <div class="container px-lg-5 text-center">
+              <div class="p-4 p-lg-5 bg-transparent rounded-3 text-center">
+                  <div class="m-4 m-lg-5">
+        <h2 class="mb-5">
+          Visa JS fiddle
+        </h2>
+        <br>
+
+        <form id="checkout" method="post" action="checkout3.php">
+          <div id="paypal-button"></div>
+
+        <ul class="list-group">
+          
+          <li class="text-start">Email address and password will be required</li>
+          <li class="text-start">No money will be charged - it's test env</li>
+          <!-- <li class="text-start">Please use the link to get the detail of the accounts that can be used
+          <a href="https://shellmcc.atlassian.net/wiki/spaces/CCDD/pages/3396173825/PSP+Configuration+Credentials+Details" target="_blank">PSP</a>
+          </li> -->
+      
+        </ul>
+
+        <br>
+        <br>
+        
+     
+
+        <img alt="Visa Checkout" class="v-button center" role="button"
+        src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"/>
+        <input id="output" class="text-center"value="Call ID will go here" readonly/>
+      </header>
+  </body>
+
+</html>

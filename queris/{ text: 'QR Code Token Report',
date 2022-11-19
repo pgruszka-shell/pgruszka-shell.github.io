@@ -1,0 +1,46 @@
+  { text: 'QR Code Token Report',
+            path: '/report/qr_code_token_report',
+            required_roles:['ROLE_CONSUMERREPORTROLE']
+           }
+
+
+
+
+
+     qr_code_token_report: {
+             action: "data/getQRCodeToken",
+             id: "QRCodeTokenReport",
+             service: "/shellmppwebservices/report/qrcodetokenreport"
+           }        
+
+
+
+
+
+           export const getQRCodeToken = ({commit}, routeParams) => {
+
+            commit(types.RESET);
+            
+              new QRCodeTokenProxy(routeParams).all()
+                .then((response) => {
+            
+                  const metaData = response.metadata;
+            
+                  response = response.data.map((row) => {
+                    let newRow = row;
+            
+            
+                    return newRow;
+                  });
+            
+                  commit(types.GET, {response: response, routeParams: routeParams});
+                  commit(types.SET_META, {metaData: metaData, routeParams: routeParams});
+                })
+                .catch((err) => {
+                  console.log('Request failed...', err);
+                })
+                .finally(() => {
+                  commit(types.END_LOADER);
+                });
+            };
+            

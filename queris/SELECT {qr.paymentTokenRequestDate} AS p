@@ -1,0 +1,8 @@
+SELECT {qr.paymentTokenRequestDate} AS paymentRequestDate, {el.errorCode} AS errorCode, {qr.transactionCountry} AS trxCountyIsoCode, {qr.currency} AS currency, 
+{ss.legacyIdValue} AS siteID, {c.isocode} AS countyIsoCode, {qr.paymentTokenResponseDate} AS paymentResponseDate, {qr.deviceID} AS deviceID,
+ {qr.model} AS model, {qr.osVersion} AS osVersion, {qr.appVersion} AS appVersion, {qr.otherDeviceInformation} AS othDeviceInfo, {qr.crossborder} AS crossBorderFlag, 
+ {ss.shellNetInOutInd} AS tpnFlag, {qr.dpan} AS dPan, {bp.referenceId} AS referenceID FROM {QRCodeTokenRequest as qr LEFT JOIN Country as tc ON {tc.pk}={qr.transactionCountry} 
+LEFT JOIN Country as c ON {c.pk}={qr.transactionCountry} 
+LEFT JOIN ShellSite as ss ON {ss.pk}={qr.site} 
+LEFT JOIN ShellB2bCardPaymentInfo as bp ON {bp.pk}={qr.paymentInfo} }
+LEFT JOIN ErrorLog! AS el ON  {el.pk}={qr.latestErrorLog} 

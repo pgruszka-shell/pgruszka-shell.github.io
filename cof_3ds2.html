@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>MPP - JS fiddle</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Simple line icons-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <script src="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.1.0/adyen.js"></script>
+        <link rel="stylesheet" href="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/3.1.0/adyen.css" />
+    
+        <!-- External Librars -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body class="bg-primary" id="page-top" onload="Onload()">
+      <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+      <nav id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <li class="sidebar-brand"><a href="index.html">HOME</a></li>
+              <li class="sidebar-nav-item"><a href="gpayFiddle.html">GPAY</a></li>
+              <li class="sidebar-nav-item"><a href="paypal.html">PayPal</a></li>
+              <li class="sidebar-nav-item"><a href="VisaCheckout.html">Visa</a></li>
+              <li class="sidebar-nav-item"><a href="cof_3ds1.html">Card On file - 3DS1</a></li>
+                <li class="sidebar-nav-item"><a href="cof_3ds2.html">Card On file- - 3DS2</a></li>
+                  </ul>
+      </nav>
+
+      <div class="container">
+        
+        <h2 class="mb-5 text-center">
+            <br>
+        <br>
+            Card on file Js fiddle -3DS2
+          </h2>
+        <!-- Credit card componet. Use to get the encrypted card details. -->
+        <br>
+        <span class="label">Country:</span>
+        <select class="select btn btn-secondary dropdown-toggle"  id="countryId">
+          <option value="en_GB">UK</option>
+          <option value="nl_NL ">NL</option>
+          <option value="de_DE">DE</option>
+          <option value="de_CH">CH</option>
+          <option value="de_AT">AT</option>
+          <option value="cs_CZ">CZ</option>
+          <option value="sk_SK">SK</option>
+          <option value="pl_PL">PL</option>
+          <option value="bg_BG">BG</option>
+          <option value="fr_LU">LU</option>
+          <option value="nl_BE">BE</option>
+          <option value="en-TR">TR</option>
+        </select> 
+        <br>
+
+            <br>
+            <div class="marchant">
+                <div class="input-group input-group-sm mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Origin Key</span>
+                  </div>
+                  <input type="text" id="OriginId" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="pub.v2.8016171198901535.aHR0cDovLzEyNy4wLjAuMTo4ODg3.sF34YVAHsXkZe08ubkfQLqSsUY3b0GjgZrgyyK3epAM">
+                <button class="input-group-text" aria-label="Small" aria-describedby="inputGroup-sizing-sm" onclick="submit()">submit</button>
+                </div>
+              <div>
+            <!-- <h3>Select the environment</h3>
+            <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked value="pub.v2.8215499009831073.aHR0cDovLzEyNy4wLjAuMTo4ODg3.bAGR_bR4pIFWdgbWnbOn1RXrU4HRq2z33tJ0zXlqlJc"">
+            <label class="btn btn-secondary" for="option1">Local</label>
+            
+            <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off" value="pub.v2.8016171198901535.aHR0cDovLzEyNy4wLjAuMTo4ODg3.sF34YVAHsXkZe08ubkfQLqSsUY3b0GjgZrgyyK3epAM">
+            <label class="btn btn-secondary" for="option2">Cons</label> -->
+            
+        <br>
+        <br>
+        <div class="row">
+            <h3>Collect Customer Card Details - <a href="https://docs.adyen.com/checkout/3d-secure/native-3ds2/api-integration#testing-3d-secure-2">Card</a> Component</h3>
+        </div>
+        <div class="row">
+    
+            <div class="col">
+                <div id="card-container">
+                    <!-- Card Component will be rendered here -->
+                </div>
+                <button class="pay-button btn btn-dark">Generate Encrypted Card Details</button>
+            </div>
+            <div class="col">
+                <div id="card-results-container">
+                    <!-- Card Component will be rendered here -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+    
+        <div class="row">
+            <h3>Identify Shopper and the device Fingerprint</h3>
+        </div>
+        <div class="row">
+            <li>Having recieved the <code>identifyShopper</code> result code it is time to get the device fingerprint: <a href="https://docs.adyen.com/checkout/3d-secure/native-3ds2/api-integration#get-the-3d-secure-2-device-fingerprint">Docs</a></li>
+            <li>Provide the <code>threeds2.fingerprintToken</code> to Adyens Component and take the generated finger print.</li>
+            <textarea id="finger-print-text-area" rows="10" cols="75">eyJ0aHJlZURTTWVzc2FnZVZlcnNpb24iOiIyLjEuMCIsInRocmVlRFNNZXRob2ROb3RpZmljYXRpb25VUkwiOiJodHRwczpcL1wvY2hlY2tvdXRzaG9wcGVyLXRlc3QuYWR5ZW4uY29tXC9jaGVja291dHNob3BwZXJcL3RocmVlRFNNZXRob2ROb3RpZmljYXRpb24uc2h0bWw/b3JpZ2luS2V5PXB1Yi52Mi44MjE1MjU5NTYwNDMwNTUyLmFIUjBjRG92THpFeU55NHdMakF1TVRvNE9EZzMuNExpdTMwMHAwQkY4ZnRLYnl1UXpIdzRoSC1OU3FoRm4tY2pXS19lZ1NCOCIsInRocmVlRFNNZXRob2RVcmwiOiJodHRwczpcL1wvcGFsLXRlc3QuYWR5ZW4uY29tXC90aHJlZWRzMnNpbXVsYXRvclwvYWNzXC9zdGFydE1ldGhvZC5zaHRtbCIsInRocmVlRFNTZXJ2ZXJUcmFuc0lEIjoiZWFkYmRjMWMtNmUxMi00ZDgwLWE3NjAtMGY3YWNjYTdjNTYyIn0=</textarea>
+        </div>
+        <div class="row">
+            <button id="finger-print-button" class=" btn btn-dark">Generate Fingerprint</button>
+        </div>
+    
+        <br>
+        <div class="row">
+            <h3>Device Fingerprint</h3>
+        </div>
+    
+        <div class="row">
+            <div id="fingerprint-results-container">
+                <div id="threeDS2"></div>
+                <!-- fingerprint result will be rendered here -->
+            </div>
+        </div>
+    
+        <div class="row">
+    
+            <h3>Submit the fingerprint result</h3>
+    
+            <li><a href ="https://docs.adyen.com/checkout/3d-secure/native-3ds2/api-integration#submit-the-3d-secure-2-device-fingerprinting-result">Submit Fingerprint Docs</a> - Make a POST  <code>/payments/details</code> request from your server. Include the <code>threeds2.fingerprint</code> (from above) and the <code>paymentData</code></li>
+            <pre><code>https://checkout-test.adyen.com/v49/payments/details
+          {
+             "paymentData": "Ab02b4c0!BQABAgCnHWnPDLXAbJ79kSO1VEQBlZevUu0o5uwG/aQ4OP0ageEZE6z3gvvLxW6IUUJyEBoqj//J7fwkrD7Iv8OQkMSsdHEyRcDM24IQbDB/bhFj/QRDkEvvKkWXQ6dPU............................",
+                 "details": {
+                 "threeds2.fingerprint": "eyJ0aHJlZURTQ29tcEluZCI6Ik4ifQ=="
+              }
+           }</code> </pre>
+        </div>
+    
+        <br>
+        <hr>
+        <br>
+    
+        <div class="row">
+            <h3>Challenge Shopper Result</h3>
+        </div>
+        <div class="row">
+            <li><a href ="https://docs.adyen.com/checkout/3d-secure/native-3ds2/api-integration#present-a-challenge"> Present a Challenge Docs</a> - Provide the threeds2.challengeToken to Adyens Component and complete the Challenge.</li>
+        </div>
+    
+        <div class="row">
+            <textarea id="challenge-token-text-area" rows="10" cols="75"></textarea>
+        </div>
+        <div class="row">
+            <button id="challenge-button" class=" btn btn-dark">Generate Challenge Window</button>
+        </div>
+    
+    
+        <div class="row">
+            <h3>Challenge Window will apear below here</h3>
+            <div id="threeDS2Challenge"></div>
+            <!-- Challenge will rendered here -->
+    
+        </div>
+    
+        <br>
+        <hr>
+        <br>
+    
+        <div class="row">
+            <h3>Challenge Result</h3>
+        </div>
+    
+        <div class="row">
+            <div id="challenge-container"></div>
+            <!-- Challenge result will rendered here -->
+        </div>
+    
+        <br>
+        <hr>
+        <br>
+    
+        <div class="row">
+            <h3>Handling the challenge response</h3>
+        </div>
+        <div class="row">
+    
+            <li><a href ="https://docs.adyen.com/checkout/3d-secure/native-3ds2/api-integration#submit-the-challenge-result">Submit the callenge result Docs</a> - Make a POST  <code>/payments/details</code> request from your server. Include the <code>threeds2.challengeResult</code> and the <code>paymentData</code></li>
+            <pre><code>https://checkout-test.adyen.com/v49/payments/details
+       {
+          "paymentData": "Ab02b4c0!BQABAgCnHWnPDLXAbJ79kSO1VEQBlZevUu0o5uwG/aQ4OP0ageEZE6z3gvvLxW6IUUJyEBoqj//J7fwkrD7Iv8OQkMSsdHEyRcDM24IQbDB/bhFj/QRDkEvvKkWXQ6dPU............................",
+              "details": {
+              "threeds2.challengeResult": "eyJ0aHJlZURTQ29tcEluZCI6Ik4ifQ=="
+           }
+        }</code> </pre>
+        </div>
+    </div>
+    </div>
+
+  </body>
+ <script src="js/scripts.js"></script>
+ <script src="js/cof.js"></script>
+</html>

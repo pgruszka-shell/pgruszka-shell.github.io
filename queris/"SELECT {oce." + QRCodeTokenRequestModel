@@ -1,0 +1,56 @@
+"SELECT {oce." + QRCodeTokenRequestModel.UID + "} AS uid, "
+                    + "{c." + CountryModel.ISOCODE + "} AS countyIsoCode, "
+                    + "{oce." + QRCodeTokenRequestModel.EXTERNALWALLETID + "} AS externalWalletId, "
+                    + "{oce." + QRCodeTokenRequestModel.CHALLENGETYPE + "} AS challengeType, "
+                    + "{oce." + QRCodeTokenRequestModel.APPTYPE + "} AS appType, "
+                    + "{oce." + QRCodeTokenRequestModel.DEVICEID + "} AS deviceId, "
+                    + "{oce." + QRCodeTokenRequestModel.PAYMENTMETHOD + "} AS paymentMethod, "
+                    + "{oce." + QRCodeTokenRequestModel.CREATIONTIME + "} AS creationTime "
+                    + "FROM {" + QRCodeTokenRequestModel._TYPECODE + " as oce "
+                    + "LEFT JOIN " + CountryModel._TYPECODE + " as c ON {c." + CountryModel.PK + "}={oce." + QRCodeTokenRequestModel.COUNTRY + "} "
+                    + "} "
+                    + "WHERE {oce." + QRCodeTokenRequestModel.CREATIONTIME + "} >= ?" + DATE_FROM_QUERY_PARAM
+                    + " AND {oce." + QRCodeTokenRequestModel.CREATIONTIME + "} <= ?" + DATE_TO_QUERY_PARAM
+                    + QUERY_PLACEHOLDER;
+
+             {el."+ErrorLogModel.PK+"}={qr."+QRCodeTokenRequestModel.LATESTERRORLOG+"}
+
+
+select  * from {QRCodeTokenRequest as qr LEFT JOIN Country as c ON {c.pk}={qr.userCountry} 
+                                            LEFT JOIN ShellSite AS ss ON {ss.PK}={qr.Site} 
+                                            LEFT JOIN ShellB2bCardPaymentInfo AS bp ON {bp.pk}={qr.paymentInfo}
+                                            
+                                            } 
+
+                                            
+                                            select  {ss.legacyIdValue} from {QRCodeTokenRequest as qr LEFT JOIN Country as c ON {c.pk}={qr.userCountry} 
+                                            LEFT JOIN ShellSite AS ss ON {ss.PK}={qr.Site} 
+                                            LEFT JOIN ShellB2bCardPaymentInfo AS bp ON {bp.pk}={qr.paymentInfo}
+                                            
+                                            } 
+
+
+
+                                            SELECT {qr.paymentTokenRequestDate} AS paymentRequestDate, {qr.transactionCountry} AS trxCountyIsoCode, {qr.currency} AS currency,
+                                             {ss.legacyIdValue} AS siteID, {qr.paymentTokenResponseDate} AS paymentResponseDate, {qr.deviceID} AS deviceID 
+                                             {qr.model} AS model, {qr.osVersion} AS osVersion ,{qr.appVersion} AS appVersion ,{qr.otherDeviceInformation} AS othDeviceInfo ,
+                                             {qr.crossborder} AS crossBorderFlag, {ss.shellNetInOutInd} AS tpnFlag ,{qr.dpan} AS dPan, {bp.referenceId} AS referenceID 
+FROM {QRCodeTokenRequest as qr LEFT JOIN Country as c ON {c.pk}={qr.transactionCountry}
+		LEFT JOIN ShellSite as ss ON {ss.pk}={qr.site} 
+		LEFT JOIN ShellB2bCardPaymentInfo as bp ON {bp.pk}={qr.paymentInfo}}
+
+
+        SELECT  item_t0.p_paymenttokenrequestdate  AS paymentRequestDate,  item_t0.p_transactioncountry  AS trxCountyIsoCode,  item_t0.p_currency  AS currency, 
+         item_t2.p_legacyidvalue  AS siteID,  item_t0.p_paymenttokenresponsedate  AS paymentResponseDate,  item_t0.p_deviceid  AS deviceID,  item_t0.p_model  AS model, 
+          item_t0.p_osversion  AS osVersion,  item_t0.p_appversion  AS appVersion,  item_t0.p_otherdeviceinformation  AS othDeviceInfo, 
+           item_t0.p_crossborder  AS crossBorderFlag,  item_t2.p_shellnetinoutind  AS tpnFlag,  item_t0.p_dpan  AS dPan,  item_t3.p_referenceid  AS referenceID,
+            FROM qrcodetokenrequest item_t0 LEFT JOIN countries item_t1 ON  item_t1.PK = item_t0.p_transactioncountry 
+             LEFT JOIN pointofservice item_t2 ON  item_t2.PK = item_t0.p_site 
+              LEFT JOIN paymentinfos item_t3 ON  item_t3.PK = item_t0.p_paymentinfo 
+               WHERE ( item_t0.createdTS  &gt;= ? AND  item_t0.createdTS  &lt;= ?) 
+               AND ((item_t0.TypePkString=? 
+                AND (item_t1.TypePkString IS NULL OR ( item_t1.TypePkString=? ) ) 
+                AND (item_t2.TypePkString IS NULL OR ( item_t2.TypePkString=? ) )
+                 AND (item_t3.TypePkString IS NULL OR ( item_t3.TypePkString=? ) )))
+                  ORDER BY 1 OFFSET ? ROWS FETCH NEXT ? ROWS ONLY', 
+                  values = [Wed Sep 07 05:30:00 IST 2022, Fri Sep 09 05:29:59 IST 2022, 8796116287570, 8796093710418, 8796096921682, 8796097806418]
