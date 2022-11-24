@@ -125,7 +125,7 @@
                     $("#challenge-container").empty();
                     $('#challenge-container').append(
                         $('<pre>').text(
-                            JSON.stringify(challengeData['data']['details']['threeds2.challengeResult'], null, '  ')
+                            JSON.stringify(challengeData['data']['details']['threeds2.challengeResult'], null, 'eyJ0cmFuc1N0YXR1cyI6IlkifQ==')
                         )
                     );}, // Gets triggered whenever the ThreeDS2 Component has a result
                 onError: function(challengeData) {
