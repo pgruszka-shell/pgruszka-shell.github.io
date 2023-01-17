@@ -55,6 +55,10 @@ function changeTokenKey(){
       },
     
         onAuthorize: function (data, actions) {
+          var element = document.getElementById("payment_method_nonce");
+         if (element != null){
+          element.remove();
+         } 
         console.log( JSON.stringify(data, 0, 2),JSON.stringify(actions, 0, 2));
           return paypalCheckoutInstance.tokenizePayment(data).then(function (payload) {
             // Submit payload.nonce to your server
@@ -64,6 +68,7 @@ function changeTokenKey(){
       var input = document.createElement("input");
                     input.type = "text";
                     input.name = "payment_method_nonce";
+                    input.id = "payment_method_nonce"
             input.value = payload.nonce;
                     container.appendChild(input);
           }).catch(function (err) {
