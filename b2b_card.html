@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>MPP - JS fiddle</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/10.1.9/jsrsasign-all-min.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-primary" id="page-top">
+    <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand"><a href="index.html">HOME</a></li>
+        <li class="sidebar-nav-item"><a href="gpayFiddle.html">GPAY</a></li>
+        <li class="sidebar-nav-item"><a href="paypal.html">PayPal</a></li>
+        <li class="sidebar-nav-item"><a href="VisaCheckout.html">Visa</a></li>
+        <li class="sidebar-nav-item">
+          <a href="cof_3ds1.html">Card On file - 3DS1</a>
+        </li>
+        <li class="sidebar-nav-item">
+          <a href="cof_3ds2.html">Card On file- - 3DS2</a>
+        </li>
+        <li class="sidebar-nav-item"><a href="b2b_card.html">B2B Cards</a></li>
+      </ul>
+    </nav>
+    <header class="py-5">
+      <div class="container px-lg-5">
+        <div class="p-4 p-lg-5 bg-transparent rounded-3 text-center">
+          <div class="m-4 m-lg-5">
+            <h2 class="mb-5">B2B Card Encryption</h2>
+            <br />
+            <div class="marchant">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-sm"
+                    >Enter Card Number
+                  </span>
+                </div>
+
+                <input
+                  type="text"
+                  id="card_number_text"
+                  type="text"
+                  id="merchantId1"
+                  class="form-control"
+                  aria-label="Small"
+                  aria-describedby="inputGroup-sizing-sm"
+                />
+                <button
+                  class="card_number"
+                  aria-label="Small"
+                  aria-describedby="inputGroup-sizing-sm"
+                  onclick="encrypt('card_number_text')"
+                >
+                  Encrypt
+                </button>
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="card_box" id="inputGroup-sizing-sm" 
+                  >Enter Card Expiry    
+                  </span>
+                </div>
+
+                <input
+                  type="text"
+                  id="card_expiry_text"
+                  type="text"
+                  id="merchantId1"
+                  class="form-control"
+                  aria-label="Small"
+                  aria-describedby="inputGroup-sizing-sm"
+                />
+                <button
+                  class="card_number"
+                  aria-label="Small"
+                  aria-describedby="inputGroup-sizing-sm"
+                  onclick="encrypt('card_expiry_text')"
+                >
+                  Encrypt
+                </button>
+              </div>
+            </div>
+            <br />
+            <div class="input-group-prepend">
+              <span class="encryptedData" id="inputGroup-sizing-sm"
+                >Encrypted Data</span
+              >
+              
+            </div>
+            <div id="container"></div>
+            <textarea id="encryptedDataText" rows="5" cols="50" readonly></textarea>
+            <br>
+            <button onclick="copyText()">
+                Copy
+              </button>
+          </div>
+        </div>
+      </div>
+    </header>
+   
+    <script src="js/b2b.js"></script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
+
+
+
