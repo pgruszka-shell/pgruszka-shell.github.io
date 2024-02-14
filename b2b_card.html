@@ -66,14 +66,6 @@
                   aria-label="Small"
                   aria-describedby="inputGroup-sizing-sm"
                 />
-                <button
-                  class="card_number"
-                  aria-label="Small"
-                  aria-describedby="inputGroup-sizing-sm"
-                  onclick="encrypt('card_number_text')"
-                >
-                  Encrypt
-                </button>
               </div>
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -91,22 +83,25 @@
                   aria-label="Small"
                   aria-describedby="inputGroup-sizing-sm"
                 />
-                <button
+                
+              </div>
+              <br>
+              <button
                   class="card_number"
                   aria-label="Small"
                   aria-describedby="inputGroup-sizing-sm"
-                  onclick="encrypt('card_expiry_text')"
+                  onclick="encrypt()"
                 >
                   Encrypt
                 </button>
-              </div>
             </div>
             <br />
+            <br>
+            <br>
             <div class="input-group-prepend">
               <span class="encryptedData" id="inputGroup-sizing-sm"
                 >Encrypted Data</span
               >
-              
             </div>
             <div id="container"></div>
             <textarea id="encryptedDataText" rows="5" cols="50" readonly></textarea>
