@@ -87,7 +87,6 @@
               </div>
               <br>
               <button
-                  class="card_number"
                   aria-label="Small"
                   aria-describedby="inputGroup-sizing-sm"
                   onclick="encrypt()"
@@ -97,13 +96,11 @@
             </div>
             <br />
             <br>
-            <br>
             <div class="input-group-prepend">
               <span class="encryptedData" id="inputGroup-sizing-sm"
                 >Encrypted Data</span
               >
             </div>
-            <div id="container"></div>
             <textarea id="encryptedDataText" rows="5" cols="50" readonly></textarea>
             <br>
             <button onclick="copyText()">
