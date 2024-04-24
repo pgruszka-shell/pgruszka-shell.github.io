@@ -1,86 +1,102 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>MPP - JS fiddle</title>
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Simple line icons-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" rel="stylesheet" />
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <script src="js/gpayfiddle.js"></script>
-    </head>
-    <body class="bg-primary" id="page-top" onload="changeMerchant()"">
-      <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
-      <nav id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-              <li class="sidebar-brand"><a href="index.html">HOME</a></li>
-              <li class="sidebar-nav-item"><a href="gpayFiddle.html">GPAY</a></li>
-              <li class="sidebar-nav-item"><a href="paypal.html">PayPal</a></li>
-              <li class="sidebar-nav-item"><a href="VisaCheckout.html">Visa</a></li>
-              <li class="sidebar-nav-item"><a href="cof_3ds1.html">Card On file - 3DS1</a></li>
-              <li class="sidebar-nav-item"><a href="cof_3ds2.html">Card On file - 3DS2</a></li>
-              <li class="sidebar-nav-item"><a href="b2b_card.html">B2B Cards</a></li>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>MPP - JS fiddle</title>
+    <script src="js/gpayfiddle.js"></script>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Simple line icons-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css"
+          rel="stylesheet"/>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic"
+          rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <script src="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/5.61.0/adyen.js"
+            integrity="sha384-zFQEbSKuuwkEODuLNO/ttyx9nffjHMUsdBycqSAfeqbOvMULrOcxvUBj6YhwF7Jx"
+            crossorigin="anonymous"></script>
 
-            </ul>
-      </nav>
-        <header class="py-5">
-          <div class="container px-lg-5">
-              <div class="p-4 p-lg-5 bg-transparent rounded-3 text-center">
-                  <div class="m-4 m-lg-5">
+    <link rel="stylesheet"
+          href="https://checkoutshopper-live.adyen.com/checkoutshopper/sdk/5.60.0/adyen.css"
+          integrity="sha384-zgFNrGzbwuX5qJLys75cOUIGru/BoEzhGMyC07I3OSdHqXuhUfoDPVG03G+61oF4"
+          crossorigin="anonymous">
+
+    <!-- External Librars -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body class="bg-primary" id="page-top" onload="Onload()">
+<a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+<nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand"><a href="index.html">HOME</a></li>
+        <li class="sidebar-nav-item"><a href="gpayFiddle.html">GPAY</a></li>
+        <li class="sidebar-nav-item"><a href="paypal.html">PayPal</a></li>
+        <li class="sidebar-nav-item"><a href="VisaCheckout.html">Visa</a></li>
+        <li class="sidebar-nav-item"><a href="cof_3ds1.html">Card On file - Redirect</a></li>
+        <li class="sidebar-nav-item"><a href="cof_3ds2.html">Card On file - Native</a></li>
+        <li class="sidebar-nav-item"><a href="b2b_card.html">B2B Cards</a></li>
+
+    </ul>
+</nav>
+
+<div class="container px-lg-5">
+    <div class="p-4 p-lg-5 bg-transparent rounded-3 text-center">
         <h2 class="mb-5">
-          Card On File - 3DS1
+            Card On File - Redirect Authentication
         </h2>
         <br>
-
-		
-		<form action="https://test.adyen.com/hpp/3d/validate.shtml" method="POST">
-
-
-		<div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroup-sizing-sm">PaReq</span>
-            </div>
-			<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="PaReq" value="eNpVUttu4jAQ/RXaD4iNgZZGU0uBbinbBUUQWqkvkeWMSNTYCY6zwN/XDmS79dOcmfGZyxlIcoP4tEXZGuSwwqYRexwU2eNt+L4Yj/48P7/83rx/rNdTdsshjjZ44PAXTVNUmg8DGjAgPXTfjcyFthyEPMyWaz4ZstEYyBWBQrN84gk2NlYqkoe2MGgiKatWWyCXKGihkO+iNJrfhNscy3KpLRotrCshyhitqUps1bxStdDntEtJt0oYW4tzuntNk1/bBEhHAx21OfMpuwPSA2hNyXNr6yYk5Hg8BiI7ow5kpQgQHwPyPUnceqtxXKci429U0hU9LTaf+euuzETyOR6v9pF/j0B8BmTCImeUMXrPHgZ0GrJJOHTVOz8I5Zvgi1k8oAGlbjcXB9S+TnQBzv0/BCeOQS37MXoEeKorjS7DifDPBvLd8vzFSyGt2+uEeS0md/fTB9qr0gU8S+G2MqJ01NF4AMR/JVe9yfUunPXjXr4A+x/A3Q=="></p>	
-          </div>
-        <div>
+        <div class="row">
+            <span><b>Redirect Object</b></span>
+            <textarea id="redirect-json-text-area" rows="25" cols="75">
+                {
+                    "data": {
+                        "MD": "M2RzMi4xZDBhYWMxYmY2ZDc1NTU2YzJiMTNlNjQyN2JmODM4ZGE1O.....",
+                        "PaReq": "BQABAgAU4vKuB4zr9D9JAaFWPMgK0P0_LgTSVHCUp8rSAfqX9w0vmQ4....."
+                    },
+                    "method": "POST",
+                    "paymentMethodType": "scheme",
+                    "type": "redirect",
+                    "url": "https://checkoutshopper-test.adyen.com/checkoutshopper/threeDS/checkoutRedirect/H4sIAAAAAAAA_2WKywrCMBAAv6beLLSl2ksOYq1S-sAW9SghX...."
+                }
+            </textarea>
+            <input type="hidden" id="clientKey" value="test_CDT77UQ26VEVHNGEIKQ7J6UVOUZRHNW4">
+        </div>
+        <div class="row">
+            <button id="redirect-button" class="btn btn-dark">Generate Redirect Result</button>
+        </div>
+        <div id="threeDS2Redirect" class="row"></div>
+        <br>
+        <div id="threeDS2RedirectResult" class="row">
+            <span><b>Redirect Result</b></span>
+            <textarea id="redirectResult" rows="15" cols="75" readonly>Ab02b4c0!BQABAgA1gRmexDVKIBunbYFPNVfiMTwATh/z0ZUubZMoPh1ipxG/Ilkg5t7Ce3pTYESPqsn06dFE73TV4GfQ.....</textarea>
+        </div>
+    </div>
+    <div class="row challenge_details">
+        <h3>Submit the Redirect Result</h3>
+        <li>Submit RedirectResult</a> - Make a POST <code style="color:#694852;">/payments/details</code> request from
+            your server. Include the <code style="color:#694852;">redirectResult</code> (from above)
+        </li>
+        <pre> <code>
+        https://checkout-test.adyen.com/v71/payments/details
+        {
+          "details":{
+             "redirectResult": "Ab02b4c0!BQABAgA1gRmexDVKIBunbYFPNVfiMTwATh/z0ZUubZMoPh1ipxG/Ilkg5t7Ce3pTYESPqsn06dFE73TV4GfQ....."
+            }
+        }</code> </pre>
+    </div>
 </div>
 
-<div class="input-group input-group-sm mb-3">
-	<div class="input-group-prepend">
-	  <span class="input-group-text" id="inputGroup-sizing-sm">TermUrl</span>
-	</div>
-	<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="TermUrl" value="https://127.0.0.1:8887"></p>	
-  </div>
-<div>
-</div>
-
-
-<div class="input-group input-group-sm mb-3">
-	<div class="input-group-prepend">
-	  <span class="input-group-text" id="inputGroup-sizing-sm">MD</span>
-	</div>
-	<input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" name="MD" value="ZUVDYUFoamVEdzMxTnhQYWpZL29iQT09IQm7qxnWq7HNx3mtdrBt2kf7zR1cuh0JfGw1ZrHxqtwPwYq2GR4BI9fXICPtInvMJFLOgPc6xLcCZ9h5TDJKr0ZuMA6l-UBZaDZZB8cK553D62S4hWcFLMYsF54GoXXlKiXAjRY9VBGMtR5-4ou-M4MzlAccePkfyfqqc1ivBoirjW_kum0D3pu1O18XJTFKYU2myamxYFci5_77drJ5Y0Nuv28d4J5sapF1dic3mLpysdKxu37nPZdrkxQloVr87RvYPhZFDWeS9b5-SItwuM3Qt5zEEZbVKqewjCbGFupP1AUPVkXnOYPmd7wKAeDiWFAs57SbaJIAQGxF-1I5j93gZhYVedbPq8d3PuTj_FvRPQBcwFsJhAjpBeiXjLQ7mNAvEh4qe8V-VqK3SA5zOSGfbiRy7QPTmdDmwWQGBa6sSrgmCBK3zCUYq8Jzf08PGEQvOQ1d6MQZjfHWbUEdYpFoAECqLQ0gZfqJzXby2VkHEGve2XbSxlDmpgsLlXTgmie2edQ50M0RKvsq0ULJUomNQnu-hq0Cl0WFHzpcRy3-wWcLIrxFg612ZxVb0erM1Q">
-</div>
-<div>
-</div>
-
-<input type="submit" class="input-group-text" value="go">
-
-</form>
-        </header>
-        <script src="js/scripts.js"></script>
-  </body>
-
+<script src="js/scripts.js"></script>
+<script src="js/cof.js"></script>
+<a class="scroll-to-top rounded" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</body>
 </html>
 	
 
